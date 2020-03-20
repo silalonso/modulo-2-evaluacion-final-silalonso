@@ -8,6 +8,7 @@ let favoriteSeries = [];
 let inputSearch = document.querySelector("js-input-search");
 const buttonSearch = document.querySelector("js-button-search");
 let resultSearch = document.querySelector("js-results-search");
+let favorites = document.querySelector("js-fav-series");
 
 function getApiData(ev) {
   ev.preventDefault();
@@ -15,9 +16,9 @@ function getApiData(ev) {
   fetch(`//api.tvmaze.com/search/shows?q=${text}`)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       listSeries = data;
+      console.log(listSeries);
       paintlistSeries();
     });
 }
-buttonSearch.addEventListener("click", getApiData);
+// buttonSearch.addEventListener('click', getApiData);
