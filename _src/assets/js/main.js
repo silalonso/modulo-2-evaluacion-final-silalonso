@@ -20,13 +20,13 @@ function getApiData(ev) {
         let serieResult = {
           id: serie.show.id,
           name: serie.show.name,
-          image: serie.show.image
+          image: serie.show.image.medium
         };
         listSeries.push(serieResult);
       }
 
       console.log(listSeries);
-      // paintlistSeries();
+      paintListSeries();
     });
 }
 
@@ -37,7 +37,7 @@ const listSeriesElement = document.querySelector(".js-listSeries");
 const getListSeriesHtmlCode = listSeries => {
   let htmlCode = "";
   htmlCode += `<article class="serie">`;
-  htmlCode += `<img src="${listSeries.image}" class= "serie_img" alt="Serie: ${listSeries.name}">`;
+  htmlCode += `<img src="${listSeries.image}" class= "js-addSerie serie_img" alt="Serie: ${listSeries.name}">`;
   htmlCode += `<h3 class="serie_name">${listSeries.name}</h3>`;
   htmlCode += `</article>`;
   return htmlCode;
@@ -49,8 +49,21 @@ const paintListSeries = serie => {
     seriesCode += getListSeriesHtmlCode(serie);
   }
   listSeriesElement.innerHTML = seriesCode;
+  listenClickSeries();
 };
 
-paintListSeries();
+// escuchar click en las series
+
+const listenClickSeries = () => {
+  const listSeries = document.querySelectorAll(".js-addSerie");
+  for (const listSerie of listSeries) {
+    listSerie.addEventListener("click", addToFavs);
+  }
+  console.log(listSeries);
+};
+
+const addToFavs = () => {
+  console.log("Han añadido una serie a favs");
+};
 
 buttonSearch.addEventListener("click", getApiData);
