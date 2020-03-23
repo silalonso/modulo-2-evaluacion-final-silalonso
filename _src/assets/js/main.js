@@ -1,6 +1,6 @@
 "use strict";
 
-console.log(">> Ready :)");
+// console.log(">> Ready :)");
 let listSeries = [];
 let favoriteSeries = [];
 // los pongo vacíos porque luego se pintarán
@@ -16,7 +16,7 @@ function getApiData(ev) {
     .then(response => response.json())
     .then(data => {
       for (const serie of data) {
-        console.log(serie.show.name);
+        // console.log(serie.show.name);
         let serieResult = {
           id: serie.show.id,
           name: serie.show.name,
@@ -25,7 +25,7 @@ function getApiData(ev) {
         listSeries.push(serieResult);
       }
 
-      console.log(listSeries);
+      // console.log(listSeries);
       paintListSeries();
     });
 }
@@ -37,7 +37,7 @@ const listSeriesElement = document.querySelector(".js-listSeries");
 const getListSeriesHtmlCode = listSeries => {
   let htmlCode = "";
   htmlCode += `<article class="serie">`;
-  htmlCode += `<img src="${listSeries.image}" class= "js-addSerie serie_img" alt="Serie: ${listSeries.name}">`;
+  htmlCode += `<img src="${listSeries.image}" class= "js-addSerie serie_img" data-id = "${listSeries.id}" alt="Serie: ${listSeries.name}">`;
   htmlCode += `<h3 class="serie_name">${listSeries.name}</h3>`;
   htmlCode += `</article>`;
   return htmlCode;
@@ -59,11 +59,12 @@ const listenClickSeries = () => {
   for (const listSerie of listSeries) {
     listSerie.addEventListener("click", addToFavs);
   }
-  console.log(listSeries);
+  // console.log(listSeries);
 };
 
-const addToFavs = () => {
-  console.log("Han añadido una serie a favs");
+const addToFavs = ev => {
+  console.log(ev.target.dataset.id);
+  // console.log("Han añadido una serie a favs");
 };
 
 buttonSearch.addEventListener("click", getApiData);
