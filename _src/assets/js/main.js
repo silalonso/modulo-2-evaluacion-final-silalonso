@@ -18,7 +18,8 @@ function getApiData(ev) {
         let serieResult = {
           id: serie.show.id,
           name: serie.show.name,
-          image: serie.show.image.medium
+          image: serie.show.image.medium,
+          status: serie.show.status
         };
         listSeries.push(serieResult);
       }
@@ -35,6 +36,7 @@ const getListSeriesHtmlCode = listSeries => {
   htmlCode += `<article class="serie">`;
   htmlCode += `<img src="${listSeries.image}" class= "js-addSerie serie_img" data-id="${listSeries.id}" alt="Serie: ${listSeries.name}">`;
   htmlCode += `<h3 class="serie_name">${listSeries.name}</h3>`;
+  htmlCode += `<h3 class="serie_status">${listSeries.status}</h3>`;
   htmlCode += `</article>`;
   return htmlCode;
 };
@@ -47,6 +49,15 @@ const paintListSeries = serie => {
   listSeriesElement.innerHTML = seriesCode;
   listenClickSeries();
 };
+
+const logbtn = document.querySelector(".js-btn-nombreSerie");
+logbtn.addEventListener("click", function(ev) {
+  ev.preventDefault();
+
+  for (const serie of listSeries) {
+    console.log(serie.name);
+  }
+});
 
 // escuchar click en las series
 
