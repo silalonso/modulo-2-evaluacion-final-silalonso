@@ -58,20 +58,21 @@ const listenClickSeries = () => {
 };
 
 const addToFavs = ev => {
-  console.log(ev.target.dataset.id);
   const clickedSerie = ev.target.dataset.id;
-  let chosenSerie;
+  console.log(clickedSerie);
+
+  let chosenSerie = {};
   for (const serie of listSeries) {
     if (serie.id === clickedSerie) {
       chosenSerie = serie;
     }
+    chosenSerie = {
+      id: chosenSerie.id,
+      name: chosenSerie.name,
+      image: chosenSerie.image
+    };
   }
-
-  favoriteSeries.push({
-    id: chosenSerie.id,
-    name: chosenSerie.name,
-    image: chosenSerie.image
-  });
+  favoriteSeries.push(chosenSerie);
 
   console.log(favoriteSeries);
 };
