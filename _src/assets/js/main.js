@@ -67,9 +67,9 @@ const addToFavs = ev => {
       chosenSerie = serie;
     }
     chosenSerie = {
-      id: chosenSerie.id,
-      name: chosenSerie.name,
-      image: chosenSerie.image
+      id: clickedSerie.id,
+      name: clickedSerie.name,
+      image: clickedSerie.image
     };
   }
   favoriteSeries.push(chosenSerie);
